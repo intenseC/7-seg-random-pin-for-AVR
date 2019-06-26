@@ -1,8 +1,8 @@
 /*
-*   7-seg Display Handler for AVR 
-*   Encoder Handler for AVR 
+*   7-seg Display Handler for AVR; 
+*   Encoder Handler for AVR; 
 *   AC Dimmer example with 
-*   zero-crossing detection
+*   zero-crossing detection.
 *   written  by V. 'Larry' Beliacoff 
 *   x3merz@gmail.com
 */
