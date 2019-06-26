@@ -1,10 +1,13 @@
-
 /*
-
-Advanced AC Power Outlet Dimmer
-For Driving High Current Loads
-ver. 0.01a
+*   7-seg Display Handler for AVR 
+*   Encoder Handler for AVR 
+*   AC Dimmer example with 
+*   zero-crossing detection
+*   written  by V. 'Larry' Beliacoff 
+*   x3merz@gmail.com
 */
+
+
 
 
   // Firing angle calculation : 1 full 50Hz wave = 1/50 = 20ms 
