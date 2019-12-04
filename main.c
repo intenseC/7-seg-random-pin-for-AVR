@@ -3,7 +3,7 @@
 *   Encoder Handler for AVR; 
 *   AC Dimmer example with 
 *   zero-crossing detection.
-*   written  by V. 'Larry' Beliacoff 
+*   written  by Simon  Katznelson 
 *   x3merz@gmail.com
 */
 
