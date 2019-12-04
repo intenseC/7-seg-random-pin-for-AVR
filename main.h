@@ -2,8 +2,8 @@
 *   7-seg Display Handler for AVR 
 *   Encoder Handler for AVR 
 *   Dimmer example with zero-crossing
-* written  by V. 'Larry' Beliacoff 
-*  x3merz@gmail.com
+*   written  by Simon  Katznelson  
+*   x3merz@gmail.com
 */
 
 
@@ -157,10 +157,8 @@ void rotaryEnc();
 //*****************************************************************************
 // define vars here
 //*****************************************************************************
-
-
-
-  volatile uint16_t counter = 0;
+  
+volatile uint16_t counter = 0;
 /**/
  volatile uint16_t   display = 0;
  volatile   uint8_t dotIsOn[2];
