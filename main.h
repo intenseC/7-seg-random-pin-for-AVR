@@ -142,14 +142,14 @@ struct SvnSeg {
 #define __PIN6  (1 << 6)  //     0b01000000        
 #define __PIN7  (1 << 7)  //     0b10000000  
 
-#define A  (1 << 0)   //    0b00000001            
-#define B  (1 << 1)   //    0b00000010           
-#define C  (1 << 2)   //    0b00000100         
-#define D  (1 << 3)   //    0b00001000       
-#define E  (1 << 4)   //    0b00010000         
-#define F  (1 << 5)   //    0b00100000        
-#define G  (1 << 6)   //    0b01000000        
-#define DOT  (1 << 7) //    0b10000000  
+#define A  (1 << 0)   //    0b0000000*            
+#define B  (1 << 1)   //    0b000000*0           
+#define C  (1 << 2)   //    0b00000*00         
+#define D  (1 << 3)   //    0b0000*000       
+#define E  (1 << 4)   //    0b000*0000         
+#define F  (1 << 5)   //    0b00*00000        
+#define G  (1 << 6)   //    0b0*000000        
+#define DOT  (1 << 7) //    0b*0000000  
 
 // #define BY_NIBBLE
 // #define _REVERSE
