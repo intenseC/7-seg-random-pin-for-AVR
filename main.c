@@ -4,7 +4,7 @@
 *   AC Dimmer example with
 *   zero-crossing detection.
 *   written  by Simon  Katznelson
-*   x3merz@gmail.com
+*   x3merz@intensecircuit.com
 */
 
 
@@ -30,21 +30,23 @@ static void rotaryEnc();
  
 struct svnSeg  svnSeg, *psvnSeg;
 
-        /* array of strucs */
+        /* array of structs */
 struct svnSeg displays[] = {
 	// first display registers
  {
-	 {
+   {
 	SEGM_PIN0, SEGM_PIN1, SEGM_PIN2, SEGM_PIN3
 	 },
-	 &PORT_DISPL  },   // change/increase port/digit pins here
+	 &PORT_DISPL
+		 },   // change/increase port/digit pins here
 #ifdef   TWODISPL
 	 // 2nd display registers
  {  
-	  { 
+   { 
 	SEGM_A_PIN0, SEGM_A_PIN1, SEGM_A_PIN2, SEGM_A_PIN3
 	  },
-	 &PORT_DISPL_A  }
+	 &PORT_DISPL_A
+	 	}
 #endif
 };
 
