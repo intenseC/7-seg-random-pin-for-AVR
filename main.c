@@ -28,10 +28,10 @@ static void rotaryEnc();
 // define vars here
 //*****************************************************************************
  
-struct svnSeg  svnSeg, *psvnSeg;
+struct SvnSeg  svnSeg, *psvnSeg;
 
         /* array of structs */
-struct svnSeg displays[] = {
+struct SvnSeg displays[] = {
 	// first display registers
  {
    {
