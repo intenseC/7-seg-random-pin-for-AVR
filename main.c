@@ -51,16 +51,16 @@ struct SvnSeg displays[] = {
 };
 
 
-volatile  uint8_t *setSegmPorts[] = { &PORT_SEGM, &PORT_SEGM_A };
-volatile uint8_t  cDig;        
-volatile static uint8_t led_s = 1, led_r = 1;
+ volatile  uint8_t *setSegmPorts[] = { &PORT_SEGM, &PORT_SEGM_A };
+ volatile uint8_t  cDig;        
+ volatile static uint8_t led_s = 1, led_r = 1;
 
  volatile uint16_t counter;
  volatile uint16_t display;
  volatile uint8_t dotIsOn[2];
 
 
-     unsigned char digits[] = {
+static const uint8_t digits[] = {
 	(A+B+C+D+E+F),   // 0
 	(B+C),           // 1
 	(A+B+D+E+G),     // 2
@@ -83,8 +83,6 @@ volatile static uint8_t led_s = 1, led_r = 1;
 	(C+E+G),         // n
 	(D+E+F+G)        // t
 };
-///  0, 1, 2, 3, 0, 1, 2, 3
-
 
 volatile int8_t firingAngle;
 volatile int8_t  halfwave;
@@ -129,7 +127,6 @@ const int8_t encMinus = 0b01001011;
 
 static void init_io(void) {
 	/* first set all pins to input */
-
      DIR_DISPL = 0b00001111;                       /* 0123 as output  */
      PORT_DISPL = 0b00110000;                         /* 4-5 pulled rest are low  */
      DIR_SEGM = 0xFF; //  /* all pins output  */
