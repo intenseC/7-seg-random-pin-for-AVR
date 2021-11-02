@@ -243,7 +243,8 @@ ISR(TIMER1_COMPA_vect) { // 10 kHz / 0.1ms / 100ns
        ++scaler;
        counter += 1;
 		   if(firingAngle > 98)  {
-               PORT_TRIAC |= (1 << PIN_TRIAC); triacIsOn = 1;
+               PORT_TRIAC |= (1 << PIN_TRIAC);
+	       triacIsOn = 1;
            } else {
 	   //  delay to turn off triac
            if(triacIsOn == 1) {
