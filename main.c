@@ -21,6 +21,107 @@
 #include <avr/interrupt.h>
 #include "main.h"
 //*****************************************************************************
+
+
+//*****************************************************************************
+// define vars here
+//*****************************************************************************
+ 
+struct svnSeg  svnSeg, *psvnSeg;
+
+        /* array of strucs */
+struct svnSeg displays[] = {
+	// first display registers
+ {
+	 {
+	SEGM_PIN0, SEGM_PIN1, SEGM_PIN2, SEGM_PIN3
+	 },
+	 &PORT_DISPL  },   // change/increase port/digit pins here
+#ifdef   TWODISPL
+	 // 2nd display registers
+ {  
+	  { 
+	SEGM_A_PIN0, SEGM_A_PIN1, SEGM_A_PIN2, SEGM_A_PIN3
+	  },
+	 &PORT_DISPL_A  }
+#endif
+};
+
+
+volatile  uint8_t *setSegmPorts[] = { &PORT_SEGM, &PORT_SEGM_A };
+volatile uint8_t  cDig;        
+volatile static uint8_t led_s = 1, led_r = 1;
+
+ volatile uint16_t counter;
+ volatile uint16_t display;
+ volatile uint8_t dotIsOn[2];
+
+
+     unsigned char digits[] = {
+	(A+B+C+D+E+F),   // 0
+	(B+C),           // 1
+	(A+B+D+E+G),     // 2
+	(A+B+C+D+G),     // 3
+	(B+C+F+G),       // 4
+	(A+C+D+F+G),     // 5
+	(A+C+D+E+F+G),   // 6
+	(A+B+C),         // 7
+	(A+B+C+D+E+F+G), // 8
+	(A+B+C+D+F+G),   // 9
+	(A+B+C+E+F+G),   // A - 10
+	(C+D+E+F+G),     // b - 11
+	(A+D+E+F),       // C - 12
+	(B+C+D+E+G),     // d - 13
+	(A+D+E+F+G),     // E - 14
+	(A+E+F+G),       // F - 15
+	(G),             // 16 
+	(A+B+F+G),       // 17 
+	(0),             // 18 
+	(C+E+G),         // n
+	(D+E+F+G)        // t
+};
+///  0, 1, 2, 3, 0, 1, 2, 3
+
+
+volatile int8_t firingAngle;
+volatile int8_t  halfwave;
+volatile static  uint8_t  triacIsOn;
+volatile static  uint16_t  scaler;
+
+
+
+// rotary encoder
+
+uint8_t isPlus = 0;
+uint8_t isRev = 0;
+
+const int8_t encPins = 0b00110000;
+const int8_t encMask = 0b00000011; 
+
+#ifndef BY_NIBBLE
+#ifdef _REVERSE
+const int8_t encPlus = 0b00101101; 
+const int8_t encMinus = 0b00011110;
+//  // stepper motor encoder exclusive masks
+const int8_t revMinus = 0b01110100;
+const int8_t revPlus = 0b01000111;
+#else
+const int8_t encPlus = 0b00011110; 
+const int8_t encMinus = 0b00101101;
+//  // stepper motor encoder exclusive masks
+const int8_t revMinus = 0b01000111;
+const int8_t revPlus = 0b01110100;
+#endif
+#endif
+
+#ifdef BY_NIBBLE
+const int8_t encPlus = 0b01111000;
+const int8_t encMinus = 0b01001011;
+#endif
+
+
+
+
 //*****************************************************************************
 
 static void init_io(void) {
