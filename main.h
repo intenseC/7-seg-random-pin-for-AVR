@@ -57,11 +57,11 @@
 #define PIN_ZERO_N               PD3
 
 // other various pins
-/*
+#if 0
 #define PORT_PWR_LED            PORTC
 #define PWR_LED	                PINC                        //Power LED
 #define PIN_PWR_LED             PC4
-*/
+#endif
 #define PORT_PWR_LED0           PORTB
 #define PWR_LED0	        PINB                        //Power LED 
 #define PIN_PWR_LED0            PB0
@@ -112,7 +112,7 @@
 #define SEGM_A_PIN3            PD0
 #endif
                
-struct svnSeg {
+struct SvnSeg {
  volatile const uint8_t setPin[MAXREGPINS];
  volatile   uint8_t *setPort;
  volatile   uint8_t setVal[DISPVAL * 2 + 2];
