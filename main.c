@@ -180,15 +180,16 @@ ISR(TIMER2_OVF_vect) {
 #else
         psvnSeg = &displays[0]; segs = TTLSEG;
 #endif
-
+#if 0
         if(led_r)
-           for(int i = 0; i < segs; i++) {
+#endif	
+        for(int i = 0; i < segs; i++) {
 	if(led_r)  {
                 *psvnSeg->setPort &= ~(1 << *(psvnSeg->setPin + i));
 	}   else   {
 	        *psvnSeg->setPort |= (1 << *(psvnSeg->setPin + i));
                 }
-           }
+        }
 
 	     if(led_s) {
 #ifndef SEGSPLIT
@@ -203,7 +204,7 @@ ISR(TIMER2_OVF_vect) {
 					 **(setSegmPorts + 1) &=   ~( __PIN3  | __PIN7);
                      **(setSegmPorts + 1) |=   // port2
 		/*  we have two pins (bits) with same number which is illegal within single byte,
-		to overcome this we simply shift the bit value to a deserved position  */
+		to overcome this we simply shift the bit value to a desired position  */
 		((digits[psvnSeg->setVal[cDig]] &__PIN6)  >> 3) | (digits[psvnSeg->setVal[cDig]] &__PIN7);
 #endif
 				      } else {
@@ -289,14 +290,15 @@ static void rotaryEnc(void) {
 //*****************************************************************************
          // convert binary to decimal
 static  void btod(uint16_t valA, uint16_t valB) {
-	         register int8_t i;  uint16_t  x = 10, y = 1;
+	int8_t i;  
+	uint16_t  x = 10, y = 1;
 
 		   for( i = DISPVAL; i >= 0 ; i-- )
 		          {
 			  displays[0].setVal[i] =  valA % x / y;
-			         #ifdef   TWODISPL
+#ifdef   TWODISPL
 			  displays[1].setVal[i] =  valB % x / y;
-	                 #endif
+#endif
 			   x *= 10;  y *= 10;
                   }
 }
