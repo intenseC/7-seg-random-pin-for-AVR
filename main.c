@@ -280,9 +280,8 @@ static void rotaryEnc(void) {
    // this is a two-step encoder: four bits are changed per each click
           if(encStat == encPlus || (encStat & 0x0F) == (encPlus >> 4))     firingAngle++;      //display += 1;
           if(encStat == encMinus || (encStat & 0x0F) == (encMinus >> 4))   firingAngle--;  //display -= 1;
-                firingAngle = (firingAngle > 100) ? 0 : firingAngle;
-                firingAngle = (firingAngle < 0) ? 100 : firingAngle;
- 	                     // stepper motor encoder exclusive mode
+                firingAngle = (firingAngle > 100) ? 0 : (firingAngle < 0) ? 100 : firingAngle;
+ 	                     // stepper motor encoder substitute exclusive mode
 			if(encStat == revPlus)    encStat = encMinus >> 4;
 			if(encStat == revMinus)   encStat = encPlus >> 4;
 	      }
